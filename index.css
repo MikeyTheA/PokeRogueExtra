@@ -185,6 +185,7 @@ input:-internal-autofill-selected {
   color: #e0e0e0;
   font-family: 'emerald';
   font-size: 16px;
+  overflow: hidden;
 }
 
 
@@ -277,6 +278,7 @@ input:-internal-autofill-selected {
 .collapsible-container {
   border: 1px solid #626262;
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .collapsible-titlebar {
@@ -286,4 +288,5 @@ input:-internal-autofill-selected {
 
 .collapsible-content {
   padding: 2px;
+  overflow: hidden;
 }

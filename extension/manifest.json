@@ -15,16 +15,25 @@
         }
     ],
     "host_permissions": [
-        "*://pokerogue.net/*"
+        "*://pokerogue.net/*",
+        "https://pokerogue.net/"
+    ],
+    "permissions": [
+        "scripting", "activeTab", "webNavigation"
     ],
     "web_accessible_resources": [
         {
             "resources": [
-                "index.js"
+                "index"
             ],
             "matches": [
                 "*://pokerogue.net/*"
             ]
         }
-    ]
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "pokerogueextra@mikeya.com"
+        }
+    }
 }

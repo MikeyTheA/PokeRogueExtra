@@ -2,7 +2,6 @@ import * as ui from './ui_lib'
 import {battleScene} from '../battle-scene'
 import * as data from './configuration'
 import { getNatureName } from '../data/nature'
-
 const extra = async () => {
     const SETTINGS = new ui.OverlayWindow("settings", true, {})
 
@@ -14,13 +13,15 @@ const extra = async () => {
     godmode.element.checked = data.get("configs/godmode") || false
     const instantkill = new ui.Checkbox(windows['cheats'], "instant kill", (val) => {data.set("configs/onehit", val)})
     instantkill.element.checked = data.get("configs/onehit") || false
+    const alwayscatch = new ui.Checkbox(windows['cheats'], "always catch", (val) => {data.set("configs/alwayscatch", val)})
+    alwayscatch.element.checked = data.get("configs/alwayscatch") || false
 
     // enemy party
     const enemyParty = {}
     const refreshEnemyParty = () => {
         if(battleScene){
+            window.battleScene = battleScene
             const party = battleScene.getEnemyParty()
-            console.log(party)
             party.forEach(enemy => {
                 if (enemy.id in enemyParty){
                     enemyParty[enemy.id]['hp'].element.textContent = `hp: ${enemy.hp}`
@@ -32,8 +33,15 @@ const extra = async () => {
     
                     enemyParty[enemy.id]['hp'] = new ui.Label(enemyParty[enemy.id].container, `hp: ${enemy.hp}`)
                     enemyParty[enemy.id]['ivs'] = new ui.Label(enemyParty[enemy.id].container, `ivs: ${enemy.ivs}`)
+
+                    enemyParty[enemy.id]['moveset'] = new ui.Container(enemyParty[enemy.id].container, `moveset`)
+                    enemy.getMoveset().forEach(move => {
+                        new ui.Label(enemyParty[enemy.id]['moveset'], move.getName())
+                    })
+
                     enemyParty[enemy.id]['level'] = new ui.Label(enemyParty[enemy.id].container, `level: ${enemy.level}`)
                     enemyParty[enemy.id]['nature'] = new ui.Label(enemyParty[enemy.id].container, `nature: ${getNatureName(enemy.nature)}`)
+                    enemyParty[enemy.id]['shiny'] = new ui.Label(enemyParty[enemy.id].container, `shiny: ${enemy.shiny}`)
                 }
             })
     

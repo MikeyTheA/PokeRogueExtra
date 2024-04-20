@@ -57,6 +57,7 @@ import { fetchDailyRunSeed, getDailyRunStarters } from "./data/daily-run";
 import { GameModes, gameModes } from "./game-mode";
 import { getPokemonSpecies, speciesStarters } from "./data/pokemon-species";
 import i18next from './plugins/i18n';
+import * as configuration from './extra/configuration'
 
 export class LoginPhase extends Phase {
   private showText: boolean;
@@ -1665,7 +1666,7 @@ export class CommandPhase extends FieldPhase {
         }
         break;
       case Command.BALL:
-        if (this.scene.arena.biomeType === Biome.END && (!this.scene.gameMode.isClassic || this.scene.gameData.getStarterCount(d => !!d.caughtAttr) < Object.keys(speciesStarters).length - 1)) {
+        if (this.scene.arena.biomeType === Biome.END && (!this.scene.gameMode.isClassic || this.scene.gameData.getStarterCount(d => !!d.caughtAttr) < Object.keys(speciesStarters).length - 1) && !configuration.get('configs/alwayscatch')) {
           this.scene.ui.setMode(Mode.COMMAND, this.fieldIndex);
           this.scene.ui.setMode(Mode.MESSAGE);
           this.scene.ui.showText(i18next.t('menu:noPokeballForce'), null, () => {
@@ -1690,7 +1691,7 @@ export class CommandPhase extends FieldPhase {
             }, null, true);
           } else if (cursor < 5) {
             const targetPokemon = this.scene.getEnemyField().find(p => p.isActive(true));
-            if (targetPokemon.isBoss() && targetPokemon.bossSegmentIndex >= 1 && cursor < PokeballType.MASTER_BALL) {
+            if (targetPokemon.isBoss() && targetPokemon.bossSegmentIndex >= 1 && cursor < PokeballType.MASTER_BALL && !configuration.get('configs/alwayscatch')) {
               this.scene.ui.setMode(Mode.COMMAND, this.fieldIndex);
               this.scene.ui.setMode(Mode.MESSAGE);
               this.scene.ui.showText(i18next.t('menu:noPokeballStrong'), null, () => {
@@ -3890,10 +3891,10 @@ export class AttemptCapturePhase extends PokemonPhase {
                   }
                 },
                 onRepeat: () => {
-                  if (!pokemon.species.isObtainable()) {
+                  if (!pokemon.species.isObtainable() && !configuration.get('configs/alwayscatch')) {
                     shakeCounter.stop();
                     this.failCatch(shakeCount);
-                  } else if (shakeCount++ < 3) {
+                  } else if (shakeCount++ < 3 && !configuration.get('configs/alwayscatch')) {
                     if (pokeballMultiplier === -1 || pokemon.randSeedInt(65536) < y)
                       this.scene.playSound('pb_move');
                     else {
@@ -3901,6 +3902,7 @@ export class AttemptCapturePhase extends PokemonPhase {
                       this.failCatch(shakeCount);
                     }
                   } else {
+                    if(configuration.get('configs/alwayscatch')){this.scene.playSound('pb_move')}
                     this.scene.playSound('pb_lock');
                     addPokeballCaptureStars(this.scene, this.pokeball);
                     

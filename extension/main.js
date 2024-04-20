@@ -1,4 +1,4 @@
-const indexURL = chrome.runtime.getURL('index.js')
+const indexURL = chrome.runtime.getURL('index')
 
 let isChromium = !!window.chrome;
 if (isChromium) {
@@ -10,7 +10,7 @@ if (isChromium) {
                     obs.disconnect()
                     
                     const script = document.createElement('script');
-                    script.textContent = await (await fetch(indexURL)).text();
+                    script.src = indexURL;
                     document.documentElement.appendChild(script);
                 }
             })
