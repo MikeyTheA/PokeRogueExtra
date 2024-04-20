@@ -61,6 +61,7 @@ import { Variant, variantData } from './data/variant';
 import { Localizable } from './plugins/i18n';
 
 export const bypassLogin = import.meta.env.VITE_BYPASS_LOGIN === "1";
+export let battleScene = undefined
 
 export const SEED_OVERRIDE = '';
 export const STARTER_SPECIES_OVERRIDE = 0;
@@ -241,6 +242,8 @@ export default class BattleScene extends SceneBase {
 		this.phaseQueuePrepend = [];
 		this.phaseQueuePrependSpliceIndex = -1;
 		this.nextCommandPhaseQueue = [];
+
+		battleScene = this
 	}
 
 	loadPokemonAtlas(key: string, atlasPath: string, experimental?: boolean) {

@@ -1,0 +1,30 @@
+{
+    "name": "PokeRogue+",
+    "description": "PokeRogue+ is an addon to the website PokeRogue.net that assists you in playing by giving you information.",
+    "version": "0.1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": [
+                "*://pokerogue.net/*"
+            ],
+            "js": [
+                "main.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "host_permissions": [
+        "*://pokerogue.net/*"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "index.js"
+            ],
+            "matches": [
+                "*://pokerogue.net/*"
+            ]
+        }
+    ]
+}

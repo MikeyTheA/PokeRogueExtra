@@ -8,6 +8,7 @@ import InputTextPlugin from 'phaser3-rex-plugins/plugins/inputtext-plugin.js';
 import BBCodeText from 'phaser3-rex-plugins/plugins/bbcodetext';
 import TransitionImagePackPlugin from 'phaser3-rex-plugins/templates/transitionimagepack/transitionimagepack-plugin.js';
 import { LoadingScene } from './loading-scene';
+import extra from './extra/extra.js';
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.WEBGL,
@@ -78,5 +79,7 @@ document.fonts.load('16px emerald').then(() => document.fonts.load('10px pkmnems
 
 const game = new Phaser.Game(config);
 game.sound.pauseOnBlur = false;
+
+extra()
 
 export default game;

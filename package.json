@@ -32,8 +32,10 @@
 		"crypto-js": "^4.2.0",
 		"i18next": "^23.11.1",
 		"json-stable-stringify": "^1.1.0",
+		"lz-string": "^1.5.0",
 		"phaser": "^3.70.0",
-		"phaser3-rex-plugins": "^1.1.84"
+		"phaser3-rex-plugins": "^1.1.84",
+		"vite-plugin-css-injected-by-js": "^3.5.0"
 	},
 	"engines": {
 		"node": ">=18.0.0"

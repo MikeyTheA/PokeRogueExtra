@@ -1,9 +1,10 @@
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import { defineConfig } from 'vite';
 // import fs from 'vite-plugin-fs';
 
 export default defineConfig(({ mode }) => {
 	return {
-		plugins: [/*fs()*/],
+		plugins: [/*fs()*/ cssInjectedByJsPlugin()],
 		server: { host: '0.0.0.0', port: 8000 },
 		clearScreen: false,
 		build: {
@@ -14,5 +15,6 @@ export default defineConfig(({ mode }) => {
 			pure: mode === 'production' ? [ 'console.log' ] : [],
 			keepNames: true,
 		},
+		manualChunks: undefined,
 	}
 })

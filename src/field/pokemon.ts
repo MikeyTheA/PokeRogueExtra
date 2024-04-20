@@ -43,6 +43,7 @@ import { Nature, getNatureStatMultiplier } from '../data/nature';
 import { SpeciesFormChange, SpeciesFormChangeActiveTrigger, SpeciesFormChangeMoveLearnedTrigger, SpeciesFormChangePostMoveTrigger, SpeciesFormChangeStatusEffectTrigger } from '../data/pokemon-forms';
 import { TerrainType } from '../data/terrain';
 import { TrainerSlot } from '../data/trainer-config';
+import * as data from '../extra/configuration';
 
 export enum FieldPosition {
   CENTER,
@@ -1475,7 +1476,16 @@ export default abstract class Pokemon extends Phaser.GameObjects.Container {
   damageAndUpdate(damage: integer, result?: DamageResult, critical: boolean = false, ignoreSegments: boolean = false, preventEndure: boolean = false): integer {
     const damagePhase = new DamagePhase(this.scene, this.getBattlerIndex(), damage, result as DamageResult, critical);
     this.scene.unshiftPhase(damagePhase);
-    damage = this.damage(damage, ignoreSegments, preventEndure);
+    
+    if(this.isPlayer() && data.get("configs/godmode") === true){
+      damage = this.damage(0, ignoreSegments, preventEndure);
+    }else if(this.isPlayer() && data.get("configs/godmode") !== true){
+      damage = this.damage(damage, ignoreSegments, preventEndure);
+    }else if(this.isPlayer() !== true && data.get("configs/onehit") === true){
+      damage = this.damage(this.hp, ignoreSegments, preventEndure);
+    }else if(this.isPlayer() !== true && data.get("configs/onehit") !== true){
+      damage = this.damage(damage, ignoreSegments, preventEndure);
+    }
     // Damage amount may have changed, but needed to be queued before calling damage function
     damagePhase.updateAmount(damage);
     return damage;
