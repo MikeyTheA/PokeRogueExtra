@@ -1,7 +1,10 @@
 import * as ui from './ui_lib'
-import {battleScene} from '../battle-scene'
+import { battleSceneExport, gameDataExport } from '../battle-scene'
 import * as data from './configuration'
 import { getNatureName } from '../data/nature'
+import { Voucher, VoucherType } from '../system/voucher'
+import { EggGachaUiHandlerExport } from '../ui/egg-gacha-ui-handler.ts'
+
 const extra = async () => {
     const SETTINGS = new ui.OverlayWindow("settings", true, {})
 
@@ -19,9 +22,9 @@ const extra = async () => {
     // enemy party
     const enemyParty = {}
     const refreshEnemyParty = () => {
-        if(battleScene){
-            window.battleScene = battleScene
-            const party = battleScene.getEnemyParty()
+        if(battleSceneExport && windows['enemy party']){
+            window.battleSceneExport = battleSceneExport
+            const party = battleSceneExport.getEnemyParty()
             party.forEach(enemy => {
                 if (enemy.id in enemyParty){
                     enemyParty[enemy.id]['hp'].element.textContent = `hp: ${enemy.hp}`
@@ -65,9 +68,26 @@ const extra = async () => {
     refreshEnemyParty()
 
     windows['enemy party'] = new ui.OverlayWindow('enemy party', false, {})
+    windows['account editor'] = new ui.OverlayWindow('account editor', false, {})
 
-    
+    const VoucherTypes = Object.keys(VoucherType).filter((v) => isNaN(Number(v)))
+    VoucherTypes.forEach((voucher,id) => {
+        const textbox = new ui.TextBox(windows['account editor'], `set "${voucher}"`, (value) => {
+            let newValue = value.target.value.replace(/\D/g,'') // remove all non-numbers
+            newValue = newValue == '' ? 0 : parseInt(newValue)
 
+            textbox.value = newValue
+            if(gameDataExport){
+                gameDataExport.voucherCounts[id] = newValue
+                
+                if(EggGachaUiHandlerExport){
+                    EggGachaUiHandlerExport.updateVoucherCounts()
+                }
+            }
+
+        }, true)
+        
+    })
     
     // settings
     Object.keys(windows).forEach(element => {

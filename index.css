@@ -294,3 +294,21 @@ input:-internal-autofill-selected {
   padding: 2px;
   overflow: hidden;
 }
+
+.textbox-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.textbox-container label {
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.textbox-container .textbox {
+  flex-grow: 1;
+  width: 0; 
+}:focus {
+  outline: none;
+}

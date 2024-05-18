@@ -248,4 +248,39 @@ class Container {
     }
 }
 
-export { OverlayWindow, Label, Button, Checkbox, Slider, Container }
+class TextBox {
+    constructor(window, text, onChange){
+        this.container = document.createElement('div');
+        this.container.classList.add('textbox-container');
+
+        this.textElement = document.createElement('label')
+        this.textElement.textContent = text
+
+        this.element = document.createElement('input')
+        this.element.classList.add('textbox')
+
+        this.container.appendChild(this.textElement)
+        this.container.appendChild(this.element)
+
+        this.onChange = onChange ?? (() => {console.log("This TextBox has no function!")})
+
+        window.contentArea.appendChild(this.container)
+        
+    }
+
+    set onChange(value){
+        this.element.removeEventListener('input', this._onClick)
+        this._onClick = value
+        this.element.addEventListener('input', this._onClick);
+    }
+
+    set value(value){
+        this.element.value = value
+    }
+
+    get value(){
+        return this.element.value
+    }
+}
+
+export { OverlayWindow, Label, Button, Checkbox, Slider, Container, TextBox }

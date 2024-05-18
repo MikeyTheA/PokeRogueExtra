@@ -64,7 +64,8 @@ import {InputsController} from "./inputs-controller";
 import {UiInputs} from "./ui-inputs";
 
 export const bypassLogin = import.meta.env.VITE_BYPASS_LOGIN === "1";
-export let battleScene = undefined
+export let battleSceneExport = undefined
+export let gameDataExport = undefined
 
 const DEBUG_RNG = false;
 
@@ -203,7 +204,8 @@ export default class BattleScene extends SceneBase {
 		this.nextCommandPhaseQueue = [];
 		this.updateGameInfo();
 
-		battleScene = this
+		window.battleScene = this
+		battleSceneExport = this
 	}
 
 	loadPokemonAtlas(key: string, atlasPath: string, experimental?: boolean) {
@@ -243,6 +245,8 @@ export default class BattleScene extends SceneBase {
 		this.uiInputs = new UiInputs(this, this.inputController);
 
 		this.gameData = new GameData(this);
+		window.gameData = this.gameData
+		gameDataExport = this.gameData
 
 		addUiThemeOverrides(this);
 

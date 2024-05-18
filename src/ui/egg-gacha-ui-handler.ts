@@ -13,6 +13,8 @@ import {Button} from "../enums/buttons";
 
 const defaultText = 'Select a machine.';
 
+export let EggGachaUiHandlerExport = undefined
+
 export default class EggGachaUiHandler extends MessageUiHandler {
   private eggGachaContainer: Phaser.GameObjects.Container;
   private eggGachaMessageBox: Phaser.GameObjects.NineSlice;
@@ -43,6 +45,7 @@ export default class EggGachaUiHandler extends MessageUiHandler {
     this.gachaInfoContainers = [];
 
     this.voucherCountLabels = [];
+    EggGachaUiHandlerExport = this
   }
 
   setup() {
