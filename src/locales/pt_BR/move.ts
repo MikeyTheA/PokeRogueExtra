@@ -2915,7 +2915,7 @@ export const move: MoveTranslationEntries = {
   },
   zippyZap: {
     name: "Zippy Zap",
-    effect: "O usuário ataca o alvo com rajadas de eletricidade em alta velocidade. Este movimento sempre ataca primeiro e resulta em um golpe crítico."
+    effect: "The user attacks the target with bursts of electricity at high speed. This move always goes first and raises the user's evasiveness."
   },
   splishySplash: {
     name: "Splishy Splash",
@@ -3583,7 +3583,7 @@ export const move: MoveTranslationEntries = {
   },
   "revivalBlessing": {
     name: "Revival Blessing",
-    effect: "O usuário concede uma bênção amorosa, revivendo um Pokémon da equipe que tenha desmaiado e restaurando metade do máximo de PS desse Pokémon."
+    effect: "O usuário concede uma bênção amorosa, reanimando um Pokémon da equipe que tenha desmaiado e restaurando metade do máximo de PS desse Pokémon."
   },
   "saltCure": {
     name: "Salt Cure",
