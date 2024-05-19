@@ -1,3 +1,5 @@
+// this library is a mess, some parts are AI generated
+
 import * as data from './configuration'
 
 class OverlayWindow {
