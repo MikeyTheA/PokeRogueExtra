@@ -1,9 +1,5 @@
 import * as ui from './ui_lib'
-import { battleSceneExport, gameDataExport } from '../battle-scene'
 import * as data from './configuration'
-import { getNatureName } from '../data/nature'
-import { VoucherType } from '../system/voucher'
-import { EggGachaUiHandlerExport } from '../ui/egg-gacha-ui-handler.ts'
 
 const extra = async () => {
     const SETTINGS = new ui.OverlayWindow("settings", true, {})
