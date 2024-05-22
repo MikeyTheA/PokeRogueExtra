@@ -8,6 +8,8 @@ import { DexAttr, GameData } from "../system/game-data";
 import { speciesStarters } from "../data/pokemon-species";
 import {Button} from "../enums/buttons";
 
+export let gameStatsUiHandlerExport: GameStatsUiHandler;
+
 interface DisplayStat {
   label?: string;
   sourceFunc?: (gameData: GameData) => string;
@@ -98,6 +100,8 @@ export default class GameStatsUiHandler extends UiHandler {
 
     this.statLabels = [];
     this.statValues = [];
+
+    gameStatsUiHandlerExport = this;
   }
 
   setup() {

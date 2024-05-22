@@ -31,6 +31,11 @@ import { TrainerVariant } from "../field/trainer";
 import { OutdatedPhase, ReloadSessionPhase } from "#app/phases";
 import { Variant, variantData } from "#app/data/variant";
 
+import { EggGachaUiHandlerExport } from "../ui/egg-gacha-ui-handler.js";
+import { gameStatsUiHandlerExport } from "../ui/game-stats-ui-handler.js";
+import { voucherContainer, statsContainer } from "../extra/windows/accountEditor"
+import * as ui from "../extra/ui_lib.js"
+
 const saveKey = 'x0i2O7WRiANTqPmZ'; // Temporary; secure encryption is not yet necessary
 
 export enum GameDataType {
@@ -417,6 +422,19 @@ export class GameData {
           this.gameStats = systemData.gameStats;
         }
 
+        for(const key in this.gameStats){
+          const textbox = new ui.TextBox(statsContainer, key, (value) => {
+            let newValue = value.target.value.replace(/\D/g, '') // remove all non-numbers
+            newValue = newValue == '' ? 0 : parseInt(newValue)
+    
+            textbox.value = newValue
+            this.gameStats[key] = newValue
+            gameStatsUiHandlerExport.updateStats()
+          })
+
+          textbox.value = this.gameStats[key]
+        }
+
         if (systemData.unlocks) {
           for (let key of Object.keys(systemData.unlocks)) {
             if (this.unlocks.hasOwnProperty(key))
@@ -445,9 +463,28 @@ export class GameData {
           });
         }
 
+        Utils.getEnumKeys(VoucherType).forEach(key => {
+          const index = VoucherType[key];
+
+          const textbox = new ui.TextBox(voucherContainer, `set "${key}"`, (value) => {
+            let newValue = value.target.value.replace(/\D/g, '') // remove all non-numbers
+            newValue = newValue == '' ? 0 : parseInt(newValue)
+    
+            textbox.value = newValue
+              this.voucherCounts[index] = newValue
+              if (EggGachaUiHandlerExport) {
+                  EggGachaUiHandlerExport.updateVoucherCounts()
+              }
+          })
+
+          textbox.value = this.voucherCounts[index]
+        });
+
         this.eggs = systemData.eggs
           ? systemData.eggs.map(e => e.toEgg())
           : [];
+
+        console.log(this.eggs)
 
         this.dexData = Object.assign(this.dexData, systemData.dexData);
         this.consolidateDexData(this.dexData);

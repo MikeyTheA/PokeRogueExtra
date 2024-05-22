@@ -192,7 +192,6 @@ input:-internal-autofill-selected {
   overflow: hidden;
 }
 
-
 .overlay-window-titlebar {
   padding: 3px;
   background-color: #292828;
@@ -200,10 +199,9 @@ input:-internal-autofill-selected {
 }
 
 .overlay-window-content {
-  padding: 2px;
-  height: calc(100% - 3px);
-  /* Adjust based on title bar height */
-  overflow: hidden;
+  padding: 3px;
+  height: calc(100% - 32px);
+  overflow: auto;
 }
 
 .overlay-window-content>*:first-child {
@@ -243,6 +241,7 @@ input:-internal-autofill-selected {
   margin: 0px;
   margin-left: 2px;
   margin-right: 2px;
+  white-space: pre-line;
 }
 
 .checkbox {

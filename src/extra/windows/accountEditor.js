@@ -1,23 +1,25 @@
 import * as ui from '../ui_lib'
-import { VoucherType } from '../../system/voucher'
-import { EggGachaUiHandlerExport } from '../../ui/egg-gacha-ui-handler.ts'
+import { gameDataExport, battleSceneExport } from '../../battle-scene'
+import { EggLapsePhase } from '../../phases'
 
 const window = new ui.OverlayWindow('account editor', false, {})
 
-const VoucherTypes = Object.keys(VoucherType).filter((v) => isNaN(Number(v)))
-VoucherTypes.forEach((voucher, id) => {
-    const textbox = new ui.TextBox(window, `set "${voucher}"`, (value) => {
-        let newValue = value.target.value.replace(/\D/g, '') // remove all non-numbers
-        newValue = newValue == '' ? 0 : parseInt(newValue)
-
-        textbox.value = newValue
-        if (gameDataExport) {
-            gameDataExport.voucherCounts[id] = newValue
-            if (EggGachaUiHandlerExport) {
-                EggGachaUiHandlerExport.updateVoucherCounts()
-            }
-        }
-    }, true)
+new ui.Button(window, 'Manual Save', () => {
+    if(gameDataExport){
+        gameDataExport.saveSystem()
+    }
 })
+
+export const voucherContainer = new ui.Container(window, 'Vouchers')
+export const statsContainer = new ui.Container(window, 'Stats')
+export const eggsContainer = new ui.Container(window, 'Eggs')
+
+new ui.Button(eggsContainer, 'force hatch all now', () => {
+    if(battleSceneExport){
+        new EggLapsePhase(battleSceneExport).startForce()
+    }
+})
+
+
 
 export default window

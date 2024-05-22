@@ -13,7 +13,6 @@ const extra = async () => {
     // settings
     Object.keys(windows).forEach(element => {
         element = windows[element]
-        console.log(element)
         const container = new ui.Container(SETTINGS, element.name)
         const visible = new ui.Checkbox(container, "Visible", (val) => { element.visible = val; data.set(`windows/${element.name}/visible`, val) })
         visible.element.checked = data.get(`windows/${element.name}/visible`) || false
@@ -22,6 +21,8 @@ const extra = async () => {
         element.element.style.opacity = data.get(`windows/${element.name}/opacity`) + "%" || '100%'
         opacity.element.value = data.get(`windows/${element.name}/opacity`) || 100
     });
+
+    new ui.Label(SETTINGS, "Made by MikeyTheA @ unknowncheats.me\nmikeythea @ discord")
 }
 
 export default extra

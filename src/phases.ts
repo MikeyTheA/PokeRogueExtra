@@ -4712,6 +4712,21 @@ export class EggLapsePhase extends Phase {
     }
     this.end();
   }
+
+  startForce() {
+    super.start();
+
+    const eggsToHatch: Egg[] = this.scene.gameData.eggs;
+
+    if (eggsToHatch.length) {
+      this.scene.queueMessage(i18next.t('battle:eggHatching'));
+      
+      for (let egg of eggsToHatch) 
+        this.scene.unshiftPhase(new EggHatchPhase(this.scene, egg));
+    
+    }
+    this.end();
+  }
 }
 
 export class AddEnemyBuffModifierPhase extends Phase {
