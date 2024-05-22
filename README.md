@@ -1,3 +1,13 @@
+cool stuff
+https://www.unknowncheats.me/forum/other-games/636038-pokerogue-net-extension-menu.html
+
+to build
+1. you need npm
+2. `npm install`
+3. `./build.sh`
+
+<details>
+<summary>balooney from the original repo</summary>
 <picture><img src="./public/images/logo.png" width="300" alt="PokéRogue"></picture>
 
 PokéRogue is a browser based Pokémon fangame heavily inspired by the roguelite genre. Battle endlessly while gathering stacking items, exploring many different biomes, fighting trainers, bosses, and more! 
@@ -103,3 +113,5 @@ Check out our [Trello Board](https://trello.com/b/z10B703R/pokerogue-board) to s
 
 ### 🎨 Move Animations
   - Pokémon Reborn
+
+</details>
