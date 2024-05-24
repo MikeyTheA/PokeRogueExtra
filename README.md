@@ -1,6 +1,35 @@
 cool stuff
 https://www.unknowncheats.me/forum/other-games/636038-pokerogue-net-extension-menu.html
 
+tested on edge and firefox
+load as unpacked on chromium and select the folder with the contents
+on firefox go on about:debugging -> this firefox -> load temporary add-on and select the manifest [in the extension folder after building]
+for firefox you may need to go to extensions and right click on it and enable always allow on pokerogue.net although it only sometimes needs this
+
+current features:
+  account editor
+    manually saving (no need to do a battle to save)
+    voucher count editing (give yourself vouchers)
+    editing all of your stats seen in the stats screen and more
+    editing the TIER of all your eggs (COMMON, GREAT, ULTRA, MASTER etc)
+    editing the GACHA TYPE of all your eggs (MOVE, LEGENDARY, SHINY, etc these just change your chances of getting something from a egg or something)
+    force hatch all eggs (just click and you will be brought to egg hatching, no need to do a wave or anything)
+  ingame cheats
+    god mode (your pokemon take 0 damage)
+    instant kill (your pokemon deal the same amount of damage as the enemy has health)
+    always catch (makes your pokeballs have a guaranteed catch, and usually(doesn't on trainers, as it would break the game) always lets you throw a pokeball)
+    inf pokemon selection points (no point limit on pokemon selection when making a new game)
+    money editor (change your money in your run)
+  enemy party
+    see info about the enemy party
+      hp (health points)
+      ivs (i dont know what order these are in, i don't even know what any of this means (what the fuck is a pokemon))
+      moveset
+      level
+      nature
+      shiny status
+  update checker
+
 to build
 1. you need npm
 2. `npm install`
