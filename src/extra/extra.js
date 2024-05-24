@@ -25,9 +25,9 @@ const extra = async () => {
     });
 
     const latestVersion = await (await fetch('https://raw.githubusercontent.com/MikeyTheA/PokeRogueExtra/main/VERSION')).text()
-    new ui.Label(SETTINGS, "Made by MikeyTheA @ unknowncheats.me\nmikeythea @ discord")
+    new ui.Label(SETTINGS, "Made by MikeyTheA @ unknowncheats.me\nmikeythea @ discord\nsource: https://github.com/MikeyTheA/PokeRogueExtra")
     if (latestVersion !== VERSION) {
-        const verLabel = new ui.Label(SETTINGS, `New version available: ${latestVersion}\nCurrent version: ${VERSION}`)
+        const verLabel = new ui.Label(SETTINGS, `New version available: ${latestVersion}\nCurrent version: ${VERSION}\nbuild on github or download update from UC if available`)
         verLabel.element.style.color = 'red'
     }else{
         const verLabel = new ui.Label(SETTINGS, `Current version: ${VERSION}`)
