@@ -9,6 +9,8 @@ to build
 
 pull requests are welcome, the code is an absolute mess!
 
+![alt text](picture.png)
+
 <details>
 <summary>balooney from the original repo</summary>
 <picture><img src="./public/images/logo.png" width="300" alt="PokéRogue"></picture>
