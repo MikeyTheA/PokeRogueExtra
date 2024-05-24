@@ -4953,10 +4953,11 @@ export class EggLapsePhase extends Phase {
     super(scene);
   }
 
-  start() {
+  start(force: boolean = false) {
     super.start();
 
     const eggsToHatch: Egg[] = this.scene.gameData.eggs.filter((egg: Egg) => {
+      if(force){return true}
       return --egg.hatchWaves < 1;
     });
 
@@ -4967,37 +4968,6 @@ export class EggLapsePhase extends Phase {
         this.scene.unshiftPhase(new EggHatchPhase(this.scene, egg));
       }
 
-    }
-    this.end();
-  }
-
-  startForce() {
-    super.start();
-
-    const eggsToHatch: Egg[] = this.scene.gameData.eggs;
-
-    if (eggsToHatch.length) {
-      this.scene.queueMessage(i18next.t("battle:eggHatching"));
-
-      for (const egg of eggsToHatch) {
-        this.scene.unshiftPhase(new EggHatchPhase(this.scene, egg));
-      }
-
-    }
-    this.end();
-  }
-
-  startForce() {
-    super.start();
-
-    const eggsToHatch: Egg[] = this.scene.gameData.eggs;
-
-    if (eggsToHatch.length) {
-      this.scene.queueMessage(i18next.t('battle:eggHatching'));
-      
-      for (let egg of eggsToHatch) 
-        this.scene.unshiftPhase(new EggHatchPhase(this.scene, egg));
-    
     }
     this.end();
   }

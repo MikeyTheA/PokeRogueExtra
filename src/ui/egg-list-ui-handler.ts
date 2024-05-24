@@ -8,6 +8,8 @@ import { addWindow } from "./ui-theme";
 import {Button} from "../enums/buttons";
 import i18next from "../plugins/i18n";
 
+export let eggListUiHandlerExport: EggListUiHandler;
+
 export default class EggListUiHandler extends MessageUiHandler {
   private eggListContainer: Phaser.GameObjects.Container;
   private eggListIconContainer: Phaser.GameObjects.Container;
@@ -87,6 +89,8 @@ export default class EggListUiHandler extends MessageUiHandler {
     this.eggListMessageBoxContainer.add(this.message);
 
     this.cursor = -1;
+
+    eggListUiHandlerExport = this;
   }
 
   show(args: any[]): boolean {
