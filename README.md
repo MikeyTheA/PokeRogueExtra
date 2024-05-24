@@ -5,7 +5,7 @@ tested on edge and firefox
 load as unpacked on chromium and select the folder with the contents
 on firefox go on about:debugging -> this firefox -> load temporary add-on and select the manifest [in the extension folder after building]
 for firefox you may need to go to extensions and right click on it and enable always allow on pokerogue.net although it only sometimes needs this
-
+```
 current features:
   account editor
     manually saving (no need to do a battle to save)
@@ -29,6 +29,7 @@ current features:
       nature
       shiny status
   update checker
+```
 
 to build
 1. you need npm
