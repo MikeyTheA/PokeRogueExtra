@@ -13,7 +13,7 @@ current features:
     editing all of your stats seen in the stats screen and more
     editing the TIER of all your eggs (COMMON, GREAT, ULTRA, MASTER etc)
     editing the GACHA TYPE of all your eggs (MOVE, LEGENDARY, SHINY, etc these just change your chances of getting something from a egg or something)
-    force hatch all eggs (just click and you will be brought to egg hatching, no need to do a wave or anything)
+    no egg wave requirement (no need to do many waves to hatch eggs)
   ingame cheats
     god mode (your pokemon take 0 damage)
     instant kill (your pokemon deal the same amount of damage as the enemy has health)
