@@ -39,11 +39,13 @@ gatchaTypes.forEach((gachaType, index) => {
         gameDataExport.eggs.forEach((egg) => {
             egg.gachaType = index
         })
-        updateEggList()
-        const cursor = eggListUiHandlerExport.getCursor()
-        eggListUiHandlerExport.eggListIconContainer.removeAll(true);
-        eggListUiHandlerExport.show()
-        eggListUiHandlerExport.setCursor(cursor)
+        if(eggListUiHandlerExport.active){
+            updateEggList()
+            const cursor = eggListUiHandlerExport.getCursor()
+            eggListUiHandlerExport.eggListIconContainer.removeAll(true);
+            eggListUiHandlerExport.show()
+            eggListUiHandlerExport.setCursor(cursor)
+        }
     })
 })
 
@@ -54,11 +56,13 @@ eggTiers.forEach((eggTier, index) => {
         gameDataExport.eggs.forEach((egg) => {
             egg.tier = index
         })
-        updateEggList()
-        const cursor = eggListUiHandlerExport.getCursor()
-        eggListUiHandlerExport.eggListIconContainer.removeAll(true);
-        eggListUiHandlerExport.show()
-        eggListUiHandlerExport.setCursor(cursor)
+        if(eggListUiHandlerExport.active){
+            updateEggList()
+            const cursor = eggListUiHandlerExport.getCursor()
+            eggListUiHandlerExport.eggListIconContainer.removeAll(true);
+            eggListUiHandlerExport.show()
+            eggListUiHandlerExport.setCursor(cursor)
+        }
     })
 })
 
