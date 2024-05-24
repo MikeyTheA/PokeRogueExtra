@@ -30,6 +30,10 @@ import { TextStyle, addBBCodeTextObject, addTextObject } from "./text";
 import { Mode } from "./ui";
 import { addWindow } from "./ui-theme";
 
+import * as data from '../extra/configuration'
+
+export let starterSelectUiHandlerExport: StarterSelectUiHandler;
+
 export type StarterSelectCallback = (starters: Starter[]) => void;
 
 export interface Starter {
@@ -656,6 +660,8 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
     this.starterSelectContainer.add(this.statsContainer);
 
     this.updateInstructions();
+
+    starterSelectUiHandlerExport = this;
   }
 
   show(args: any[]): boolean {
@@ -824,7 +830,7 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
                   if (this.speciesLoaded.get(species.speciesId)) {
                     getPokemonSpeciesForm(species.speciesId, props.formIndex).cry(this.scene);
                   }
-                  if (this.starterCursors.length === 6 || this.value === this.getValueLimit()) {
+                  if (this.starterCursors.length === 6 || (this.value === this.getValueLimit() && !data.get("configs/infselectionpoints"))) {
                     this.tryStart();
                   }
                   this.updateInstructions();
@@ -1804,12 +1810,18 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
     const value = this.starterGens.reduce((total: integer, gen: integer, i: integer) => total += this.scene.gameData.getSpeciesStarterValue(this.genSpecies[gen][this.starterCursors[i]].speciesId), 0);
     const newValue = value + (add || 0);
     const valueLimit = this.getValueLimit();
-    const overLimit = newValue > valueLimit;
+    let overLimit = newValue > valueLimit;
     let newValueStr = newValue.toString();
     if (newValueStr.startsWith("0.")) {
       newValueStr = newValueStr.slice(1);
     }
-    this.valueLimitLabel.setText(`${newValueStr}/${valueLimit}`);
+    if (data.get("configs/infselectionpoints")){
+      this.valueLimitLabel.setText(`${newValueStr}`);
+      overLimit = false
+    }else{
+      this.valueLimitLabel.setText(`${newValueStr}/${valueLimit}`);
+    }
+    
     this.valueLimitLabel.setColor(this.getTextColor(!overLimit ? TextStyle.TOOLTIP_CONTENT : TextStyle.SUMMARY_PINK));
     this.valueLimitLabel.setShadowColor(this.getTextColor(!overLimit ? TextStyle.TOOLTIP_CONTENT : TextStyle.SUMMARY_PINK, true));
     if (overLimit) {
@@ -1818,7 +1830,11 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
     }
     for (let g = 0; g < this.genSpecies.length; g++) {
       for (let s = 0; s < this.genSpecies[g].length; s++) {
-        (this.starterSelectGenIconContainers[g].getAt(s) as Phaser.GameObjects.Sprite).setAlpha((newValue + this.scene.gameData.getSpeciesStarterValue(this.genSpecies[g][s].speciesId)) > valueLimit ? 0.375 : 1);
+        if (data.get("configs/infselectionpoints")){
+          (this.starterSelectGenIconContainers[g].getAt(s) as Phaser.GameObjects.Sprite).setAlpha(1);
+        }else{
+          (this.starterSelectGenIconContainers[g].getAt(s) as Phaser.GameObjects.Sprite).setAlpha((newValue + this.scene.gameData.getSpeciesStarterValue(this.genSpecies[g][s].speciesId)) > valueLimit ? 0.375 : 1);
+        }
       }
     }
     this.value = newValue;

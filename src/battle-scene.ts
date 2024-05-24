@@ -58,6 +58,8 @@ import * as Overrides from "./overrides";
 import {InputsController} from "./inputs-controller";
 import {UiInputs} from "./ui-inputs";
 
+import { moneyEditor } from "./extra/windows/cheats"
+
 export const bypassLogin = import.meta.env.VITE_BYPASS_LOGIN === "1";
 export let battleSceneExport = undefined
 export let gameDataExport = undefined
@@ -1260,6 +1262,7 @@ export default class BattleScene extends SceneBase {
   updateMoneyText(): void {
     this.moneyText.setText(`₽${Utils.formatLargeNumber(this.money, 1000)}`);
     this.moneyText.setVisible(true);
+    moneyEditor.element.value = this.money
   }
 
   updateScoreText(): void {
