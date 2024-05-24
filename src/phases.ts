@@ -2230,7 +2230,8 @@ export class TurnEndPhase extends FieldPhase {
 
   start() {
     if(this.scene.currentBattle === null){
-      new TitlePhase(this.scene).start()
+      this.scene.pushPhase(new TitlePhase(this.scene));
+      this.scene.shiftPhase()
       return false;
     }
 
