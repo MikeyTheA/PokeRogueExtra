@@ -2229,8 +2229,12 @@ export class TurnEndPhase extends FieldPhase {
   }
 
   start() {
-    super.start();
+    if(this.scene.currentBattle === null){
+      new TitlePhase(this.scene).start()
+      return false;
+    }
 
+    super.start();
     this.scene.currentBattle.incrementTurn(this.scene);
 
     const handlePokemon = (pokemon: Pokemon) => {
