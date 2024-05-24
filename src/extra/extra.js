@@ -1,6 +1,8 @@
 import * as ui from './ui_lib'
 import * as data from './configuration'
 
+const VERSION = '1.2'
+
 const extra = async () => {
     const SETTINGS = new ui.OverlayWindow("settings", true, {})
 
@@ -22,7 +24,16 @@ const extra = async () => {
         opacity.element.value = data.get(`windows/${element.name}/opacity`) || 100
     });
 
+    const latestVersion = await (await fetch('https://raw.githubusercontent.com/MikeyTheA/PokeRogueExtra/main/VERSION')).text()
     new ui.Label(SETTINGS, "Made by MikeyTheA @ unknowncheats.me\nmikeythea @ discord")
+    if (latestVersion !== VERSION) {
+        const verLabel = new ui.Label(SETTINGS, `New version available: ${latestVersion}\nCurrent version: ${VERSION}`)
+        verLabel.element.style.color = 'red'
+    }else{
+        const verLabel = new ui.Label(SETTINGS, `Current version: ${VERSION}`)
+        verLabel.element.style.color = 'green'
+    }
+    
 }
 
 export default extra

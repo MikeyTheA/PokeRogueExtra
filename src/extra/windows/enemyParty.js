@@ -2,7 +2,7 @@ import * as ui from '../ui_lib'
 import { battleSceneExport } from '../../battle-scene'
 import { getNatureName } from '../../data/nature'
 
-const enemyPartyWindow = new ui.OverlayWindow('enemy party', false, {})
+export const enemyPartyWindow = new ui.OverlayWindow('enemy party', false, {})
 
 const enemyParty = {}
 const refreshEnemyParty = () => {

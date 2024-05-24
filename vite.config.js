@@ -9,12 +9,16 @@ export default defineConfig(({ mode }) => {
 		clearScreen: false,
 		build: {
 			minify: 'esbuild',
-			sourcemap: false
+			sourcemap: false,
+			rollupOptions: {
+				output: {
+					inlineDynamicImports: true
+				}
+			}
 		},
 		esbuild: {
 			pure: mode === 'production' ? [ 'console.log' ] : [],
 			keepNames: true,
 		},
-		manualChunks: undefined,
 	}
 })
