@@ -5,6 +5,9 @@ to build
 1. you need npm
 2. `npm install`
 3. `./build.sh`
+4. check the `extension` folder
+
+pull requests are welcome, the code is an absolute mess!
 
 <details>
 <summary>balooney from the original repo</summary>
