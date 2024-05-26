@@ -32,9 +32,9 @@ current features:
 ```
 
 to build
-1. you need npm
+1. you need node (& npm)
 2. `npm install`
-3. `./build.sh`
+3. `./build.sh` (if on windows just `npm run build` then move the file dist/assets/index-(some random shit).js file to the extension folder as `index`)
 4. check the `extension` folder
 
 pull requests are welcome, the code is an absolute mess!
