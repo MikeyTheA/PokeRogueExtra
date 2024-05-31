@@ -466,7 +466,7 @@ export class EggHatchPhase extends Phase {
       }
 
       if (data.get("configs/alwaysshiny") === true) {
-        ret.trySetShiny(999999999);
+        ret.trySetShiny(Number.MAX_SAFE_INTEGER);
       } else {
         ret.trySetShiny(this.egg.gachaType === GachaType.SHINY ? 1024 : 512);
       }
