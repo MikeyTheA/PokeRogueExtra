@@ -13,6 +13,7 @@ import { pokemonPrevolutions } from "./data/pokemon-evolutions";
 import { EggTier } from "./data/enums/egg-type";
 import PokemonInfoContainer from "./ui/pokemon-info-container";
 import EggsToHatchCountContainer from "./ui/eggs-to-hatch-count-container";
+import * as data from "./extra/configuration";
 
 export class EggHatchPhase extends Phase {
   private egg: Egg;
@@ -464,7 +465,11 @@ export class EggHatchPhase extends Phase {
         ret = this.scene.addPlayerPokemon(pokemonSpecies, 1, undefined, undefined, undefined, false);
       }
 
-      ret.trySetShiny(this.egg.gachaType === GachaType.SHINY ? 1024 : 512);
+      if (data.get("configs/alwaysshiny") === true) {
+        ret.trySetShiny(999999999);
+      } else {
+        ret.trySetShiny(this.egg.gachaType === GachaType.SHINY ? 1024 : 512);
+      }
       ret.variant = ret.shiny ? ret.generateVariant() : 0;
 
       const secondaryIvs = Utils.getIvsFromId(Utils.randSeedInt(4294967295));
