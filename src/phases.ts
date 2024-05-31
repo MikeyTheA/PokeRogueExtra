@@ -63,7 +63,7 @@ import { TextStyle, addTextObject } from "./ui/text";
 import { Type } from "./data/type";
 import { MoveUsedEvent, TurnEndEvent, TurnInitEvent } from "./battle-scene-events";
 
-import * as data from './extra/configuration'
+import * as data from "./extra/configuration";
 
 export class LoginPhase extends Phase {
   private showText: boolean;
@@ -1839,7 +1839,7 @@ export class CommandPhase extends FieldPhase {
       }
       break;
     case Command.BALL:
-      if (this.scene.arena.biomeType === Biome.END && (!this.scene.gameMode.isClassic || (this.scene.getEnemyField().filter(p => p.isActive(true)).some(p => !p.scene.gameData.dexData[p.species.speciesId].caughtAttr) && this.scene.gameData.getStarterCount(d => !!d.caughtAttr) < Object.keys(speciesStarters).length - 1) && !data.get('configs/alwayscatch'))) {
+      if (this.scene.arena.biomeType === Biome.END && (!this.scene.gameMode.isClassic || (this.scene.getEnemyField().filter(p => p.isActive(true)).some(p => !p.scene.gameData.dexData[p.species.speciesId].caughtAttr) && this.scene.gameData.getStarterCount(d => !!d.caughtAttr) < Object.keys(speciesStarters).length - 1) && !data.get("configs/alwayscatch"))) {
         this.scene.ui.setMode(Mode.COMMAND, this.fieldIndex);
         this.scene.ui.setMode(Mode.MESSAGE);
         this.scene.ui.showText(i18next.t("battle:noPokeballForce"), null, () => {
@@ -1864,7 +1864,7 @@ export class CommandPhase extends FieldPhase {
           }, null, true);
         } else if (cursor < 5) {
           const targetPokemon = this.scene.getEnemyField().find(p => p.isActive(true));
-          if (targetPokemon.isBoss() && targetPokemon.bossSegmentIndex >= 1 && !targetPokemon.hasAbility(Abilities.WONDER_GUARD, false, true) && cursor < PokeballType.MASTER_BALL && !data.get('configs/alwayscatch')) {
+          if (targetPokemon.isBoss() && targetPokemon.bossSegmentIndex >= 1 && !targetPokemon.hasAbility(Abilities.WONDER_GUARD, false, true) && cursor < PokeballType.MASTER_BALL && !data.get("configs/alwayscatch")) {
             this.scene.ui.setMode(Mode.COMMAND, this.fieldIndex);
             this.scene.ui.setMode(Mode.MESSAGE);
             this.scene.ui.showText(i18next.t("battle:noPokeballStrong"), null, () => {
@@ -4617,10 +4617,10 @@ export class AttemptCapturePhase extends PokemonPhase {
                   }
                 },
                 onRepeat: () => {
-                  if (!pokemon.species.isObtainable() && !data.get('configs/alwayscatch')) {
+                  if (!pokemon.species.isObtainable() && !data.get("configs/alwayscatch")) {
                     shakeCounter.stop();
                     this.failCatch(shakeCount);
-                  } else if (shakeCount++ < 3 && !data.get('configs/alwayscatch')) {
+                  } else if (shakeCount++ < 3 && !data.get("configs/alwayscatch")) {
                     if (pokeballMultiplier === -1 || pokemon.randSeedInt(65536) < y) {
                       this.scene.playSound("pb_move");
                     } else {
@@ -5017,6 +5017,9 @@ export class SelectModifierPhase extends BattlePhase {
   }
 
   getRerollCost(typeOptions: ModifierTypeOption[], lockRarities: boolean): integer {
+    if (data.get("configs/freererolls") === true) {
+      return 0;
+    }
     let baseValue = 0;
     if (lockRarities) {
       const tierValues = [ 50, 125, 300, 750, 2000 ];

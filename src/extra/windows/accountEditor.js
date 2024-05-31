@@ -17,7 +17,7 @@ export const voucherContainer = new ui.Container(window, "Vouchers");
 export const statsContainer = new ui.Container(window, "Stats");
 export const eggsContainer = new ui.Container(window, "Eggs");
 
-const alwaysshiny = new ui.Checkbox(window, "always shiny", (val) => {
+const alwaysshiny = new ui.Checkbox(eggsContainer, "always shiny", (val) => {
   data.set("configs/alwaysshiny", val);
 });
 alwaysshiny.element.checked = data.get("configs/alwaysshiny") || false;
