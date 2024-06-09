@@ -12,7 +12,7 @@ import { EggTier } from "../data/enums/egg-type";
 import {Button} from "../enums/buttons";
 import i18next from "../plugins/i18n";
 
-export let EggGachaUiHandlerExport = undefined
+export let EggGachaUiHandlerExport = undefined;
 
 export default class EggGachaUiHandler extends MessageUiHandler {
   private eggGachaContainer: Phaser.GameObjects.Container;
@@ -46,7 +46,7 @@ export default class EggGachaUiHandler extends MessageUiHandler {
 
     this.voucherCountLabels = [];
     this.defaultText = i18next.t("egg:selectMachine");
-    EggGachaUiHandlerExport = this
+    EggGachaUiHandlerExport = this;
   }
 
   setup() {
@@ -380,6 +380,20 @@ export default class EggGachaUiHandler extends MessageUiHandler {
         tiers[Utils.randInt(tiers.length)] = EggTier.ULTRA;
       } else if (pullCount >= 10 && !tiers.filter(t => t >= EggTier.GREAT).length) {
         tiers[Utils.randInt(tiers.length)] = EggTier.GREAT;
+      }
+      for (let i = 0; i < pullCount; i++) {
+        this.scene.gameData.eggPity[EggTier.GREAT] += 1;
+        this.scene.gameData.eggPity[EggTier.ULTRA] += 1;
+        this.scene.gameData.eggPity[EggTier.MASTER] += 1 + tierValueOffset;
+        // These numbers are roughly the 80% mark. That is, 80% of the time you'll get an egg before this gets triggered.
+        if (this.scene.gameData.eggPity[EggTier.MASTER] >= 412 && tiers[i] === EggTier.COMMON) {
+          tiers[i] = EggTier.MASTER;
+        } else if (this.scene.gameData.eggPity[EggTier.ULTRA] >= 59 && tiers[i] === EggTier.COMMON) {
+          tiers[i] = EggTier.ULTRA;
+        } else if (this.scene.gameData.eggPity[EggTier.GREAT] >= 9 && tiers[i] === EggTier.COMMON) {
+          tiers[i] = EggTier.GREAT;
+        }
+        this.scene.gameData.eggPity[tiers[i]] = 0;
       }
 
       const timestamp = new Date().getTime();
