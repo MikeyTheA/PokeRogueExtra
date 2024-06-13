@@ -31,18 +31,25 @@ body {
   transform-origin: top !important;
 }
 
+/* Need adjust input font-size */
+input {
+  font-size: 3.2rem;
+}
+
 #touchControls:not(.visible) {
   display: none;
 }
 
-#dpad, #apad {
+#dpad,
+#apad {
   position: fixed;
   bottom: 1rem;
   z-index: 3;
 }
 
 @media (orientation: portrait) {
-  #dpad, #apad {
+  #dpad,
+  #apad {
     bottom: calc(1rem + env(safe-area-inset-bottom));
   }
 }
@@ -78,7 +85,7 @@ body {
 }
 
 #apad .apadLabel {
-  font-family: 'emerald';
+  font-family: "emerald";
   font-size: var(--controls-size);
   text-shadow: var(--color-dark) var(--text-shadow-size) var(--text-shadow-size);
   color: var(--color-light);
@@ -87,10 +94,12 @@ body {
 
 #apad .apadLabelSmall {
   font-size: calc(var(--controls-size) / 3);
-  text-shadow: var(--color-dark) calc(var(--text-shadow-size) / 3) calc(var(--text-shadow-size) / 3);
+  text-shadow: var(--color-dark) calc(var(--text-shadow-size) / 3)
+    calc(var(--text-shadow-size) / 3);
 }
 
-#apad #apadLabelAction, #apad #apadLabelCancel {
+#apad #apadLabelAction,
+#apad #apadLabelCancel {
   margin-left: calc(var(--controls-size) / 3);
   line-height: 0.9;
 }
@@ -146,13 +155,34 @@ body {
   margin-left: 10%;
 }
 
-#touchControls:not([data-ui-mode='STARTER_SELECT']):not([data-ui-mode='SETTINGS']):not([data-ui-mode='SETTINGS_DISPLAY']):not([data-ui-mode='SETTINGS_AUDIO']):not([data-ui-mode='SETTINGS_GAMEPAD']):not([data-ui-mode='SETTINGS_KEYBOARD']) #apad .apadRectBtnContainer > .apadSqBtn:not(.apadBattle),
-#touchControls:not([data-ui-mode='STARTER_SELECT']):not([data-ui-mode='SETTINGS']):not([data-ui-mode='SETTINGS_DISPLAY']):not([data-ui-mode='SETTINGS_AUDIO']):not([data-ui-mode='SETTINGS_GAMEPAD']):not([data-ui-mode='SETTINGS_KEYBOARD']) #apad .apadSqBtnContainer > .apadSqBtn:not(.apadBattle)
-{
+#touchControls:not([data-ui-mode="STARTER_SELECT"]):not(
+    [data-ui-mode="SETTINGS"]
+  ):not([data-ui-mode="SETTINGS_DISPLAY"]):not(
+    [data-ui-mode="SETTINGS_AUDIO"]
+  ):not([data-ui-mode="SETTINGS_GAMEPAD"]):not(
+    [data-ui-mode="SETTINGS_KEYBOARD"]
+  )
+  #apad
+  .apadRectBtnContainer
+  > .apadSqBtn:not(.apadBattle),
+#touchControls:not([data-ui-mode="STARTER_SELECT"]):not(
+    [data-ui-mode="SETTINGS"]
+  ):not([data-ui-mode="SETTINGS_DISPLAY"]):not(
+    [data-ui-mode="SETTINGS_AUDIO"]
+  ):not([data-ui-mode="SETTINGS_GAMEPAD"]):not(
+    [data-ui-mode="SETTINGS_KEYBOARD"]
+  )
+  #apad
+  .apadSqBtnContainer
+  > .apadSqBtn:not(.apadBattle) {
   display: none;
 }
 
-#touchControls:not([data-ui-mode='COMMAND']):not([data-ui-mode='FIGHT']):not([data-ui-mode='BALL']):not([data-ui-mode='TARGET_SELECT']):not([data-ui-mode='MODIFIER_SELECT']) #apad .apadBattle {
+#touchControls:not([data-ui-mode="COMMAND"]):not([data-ui-mode="FIGHT"]):not(
+    [data-ui-mode="BALL"]
+  ):not([data-ui-mode="TARGET_SELECT"]):not([data-ui-mode="MODIFIER_SELECT"])
+  #apad
+  .apadBattle {
   display: none;
 }
 
@@ -166,11 +196,13 @@ body {
   line-height: 0.8;
 }
 
-#dpad path:not(.active), #apad .apadBtn:not(.active) {
+#dpad path:not(.active),
+#apad .apadBtn:not(.active) {
   opacity: 0.6;
 }
 
-#layout:fullscreen #dpad, #layout:fullscreen #apad {
+#layout:fullscreen #dpad,
+#layout:fullscreen #apad {
   bottom: 6rem;
 }
 
@@ -192,60 +224,58 @@ input:-internal-autofill-selected {
 
 /* Firefox old*/
 @-moz-keyframes blink {
-    0% {
-        opacity:1;
-    }
-    50% {
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes blink {
-    0% {
-        opacity:1;
-    }
-    50% {
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /* IE */
 @-ms-keyframes blink {
-    0% {
-        opacity:1;
-    }
-    50% {
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /* Opera and prob css3 final iteration */
 @keyframes blink {
-    0% {
-        opacity:1;
-    }
-    50% {
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .blink-image {
-    -moz-animation: blink normal 4s infinite ease-in-out; /* Firefox */
-    -webkit-animation: blink normal 4s infinite ease-in-out; /* Webkit */
-    -ms-animation: blink normal 4s infinite ease-in-out; /* IE */
-    animation: blink normal 4s infinite ease-in-out; /* Opera and prob css3 final iteration */
+  -moz-animation: blink normal 4s infinite ease-in-out; /* Firefox */
+  -webkit-animation: blink normal 4s infinite ease-in-out; /* Webkit */
+  -ms-animation: blink normal 4s infinite ease-in-out; /* IE */
+  animation: blink normal 4s infinite ease-in-out; /* Opera and prob css3 final iteration */
 }
-
-
 
 .overlay-window {
   background: #363535;
@@ -255,7 +285,7 @@ input:-internal-autofill-selected {
   z-index: 100;
   display: block;
   color: #e0e0e0;
-  font-family: 'emerald';
+  font-family: "emerald";
   font-size: 16px;
   overflow: hidden;
 }
@@ -272,7 +302,7 @@ input:-internal-autofill-selected {
   overflow: auto;
 }
 
-.overlay-window-content>*:first-child {
+.overlay-window-content > *:first-child {
   margin-top: 0;
 }
 
@@ -297,7 +327,7 @@ input:-internal-autofill-selected {
   width: 100%;
   text-align: left;
   display: inline-block;
-  font-family: 'emerald';
+  font-family: "emerald";
   font-size: 16px;
 }
 
@@ -375,7 +405,8 @@ input:-internal-autofill-selected {
 
 .textbox-container .textbox {
   flex-grow: 1;
-  width: 0; 
-}:focus {
+  width: 0;
+}
+:focus {
   outline: none;
 }
