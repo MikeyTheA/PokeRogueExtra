@@ -7,7 +7,7 @@ import BBCodeTextPlugin from "phaser3-rex-plugins/plugins/bbcodetext-plugin";
 import InputTextPlugin from "phaser3-rex-plugins/plugins/inputtext-plugin.js";
 import TransitionImagePackPlugin from "phaser3-rex-plugins/templates/transitionimagepack/transitionimagepack-plugin.js";
 import { LoadingScene } from "./loading-scene";
-import extra from './extra/extra.js';
+import extra from "./extra/extra.js";
 
 
 // Catch global errors and display them in an alert so users can report the issue.
@@ -151,6 +151,7 @@ Phaser.GameObjects.Text.prototype.setPositionRelative = setPositionRelative;
 Phaser.GameObjects.Rectangle.prototype.setPositionRelative = setPositionRelative;
 
 document.fonts.load("16px emerald").then(() => document.fonts.load("10px pkmnems"));
+document.fonts.load("12px unifont");
 
 let game;
 
@@ -169,6 +170,6 @@ fetch("/manifest.json")
     startGame();
   });
 
-extra()
+extra();
 
 export default game;
