@@ -1,3 +1,9 @@
+# THIS REPOSITORY IS ARCHIVED
+
+# IT WILL NOT RECEIVE ANY UPDATES
+
+# GO TO https://github.com/MikeyTheA/PokeRogueModLoader FOR A MORE UP TO DATE VERSION
+
 cool stuff
 https://www.unknowncheats.me/forum/other-games/636038-pokerogue-net-extension-menu.html
 
